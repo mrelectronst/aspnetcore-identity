@@ -5,24 +5,27 @@
 }
 
 <table class="table table-bordered table-striped">
-    
+
     <tr>
         <th>Id</th>
         <th>Name</th>
         <th>Email</th>
     </tr>
 
-    @if(Model.Count() == 0){
+    @if (Model.Count() == 0)
+    {
         <tr>
-            <td colspan = 3>Users Not Found</td>
+            <td colspan=3>Users Not Found</td>
         </tr>
-    }else{
+    }
+    else
+    {
         foreach (var item in Model)
         {
             <tr>
-                <td>item.Id</td>
-                <td>item.UserName</td>
-                <td>item.Email</td>
+                <td>@item.Id</td>
+                <td>@item.UserName</td>
+                <td>@item.Email</td>
             </tr>
         }
     }

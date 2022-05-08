@@ -5,31 +5,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace identity.Controllers
 {
-    public class AdminController: Controller
+    public class AdminController : Controller
     {
         private readonly ILogger<AdminController> _logger;
-        private readonly UserManager<AppUser> _userManager;
+        private UserManager<AppUser> _userManager { get; }
 
-        public AdminController(ILogger<AdminController> logger,UserManager<AppUser> userManager)
-    {
-        _logger = logger;
-            this._userManager = userManager;
+        public AdminController(ILogger<AdminController> logger, UserManager<AppUser> userManager)
+        {
+            _logger = logger;
+            _userManager = userManager;
         }
 
-    public IActionResult Index()
-    {
-        return View(_userManager.Users.ToList());
-    }
+        public IActionResult Index()
+        {
+            return View(_userManager.Users.ToList());
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        public IActionResult Privacy()
+        {
+            return View();
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

@@ -11,7 +11,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>{
     options.UseSqlServer(builder.Configuration.GetConnectionString("AzureSqlServer"));
 });
 
-builder.Services.AddIdentity<AppUser,AppRole>()
+builder.Services.AddIdentity<AppUser,AppRole>(options =>
+{
+    options.Password.RequiredLength = 3;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequireDigit = false;
+})
 .AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
